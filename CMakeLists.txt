@@ -6,8 +6,8 @@ find_package(ament_cmake REQUIRED)
 # Add serial library
 add_library(${PROJECT_NAME}
   src/serial.cc
-  include/serial.h
-  include/v8stdint.h
+  include/serial/serial.h
+  include/serial/v8stdint.h
 )
 
 if(APPLE) # macOS
@@ -35,14 +35,6 @@ endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
-## Uncomment for example
-# add_executable(serial_example examples/serial_example.cc)
-# add_dependencies(serial_example ${PROJECT_NAME})
-# target_link_libraries(serial_example ${PROJECT_NAME})
-
-## Include headers
-include_directories(include)
-
 ## Install executable
 install(TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION lib
@@ -52,6 +44,6 @@ install(TARGETS ${PROJECT_NAME}
 
 ## Install headers
 install(FILES include/serial/serial.h include/serial/v8stdint.h
-  DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}/serial)
+  DESTINATION include/serial)
 
 ament_package()
